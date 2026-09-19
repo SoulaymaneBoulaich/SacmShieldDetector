@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield Pro — Threat Intelligence & Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="options-sidebar">
+      <div class="sidebar-brand">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <circle cx="12" cy="11" r="3" fill="#38bdf8"/>
+        </svg>
+        <div class="brand-text">
+          <div class="brand-name">ScamShield<span class="badge-pro">PRO</span></div>
+          <div class="brand-ver">v1.0.0 Enterprise Shield</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="tab-logs">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Threat Audit Logs
+        </button>
+        <button class="nav-item" data-tab="tab-rules">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          Whitelist & Blacklist
+        </button>
+        <button class="nav-item" data-tab="tab-brands">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Custom Brands Monitor
+        </button>
+        <button class="nav-item" data-tab="tab-settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Engine Configuration
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="privacy-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          100% Local Heuristics & Zero Telemetry
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="options-main">
+      <!-- TAB 1: Audit Logs -->
+      <section id="tab-logs" class="content-panel active">
+        <header class="panel-header">
+          <div>
+            <h1 class="panel-title">Threat Audit & Scan Logs</h1>
+            <p class="panel-subtitle">Historical records of flagged scam, phishing, and homoglyph incidents.</p>
+          </div>
+          <div class="panel-actions">
+            <button id="btn-export-logs" class="btn btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export JSON
+            </button>
+            <button id="btn-clear-logs" class="btn btn-danger">Clear Logs</button>
+          </div>
+        </header>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <input type="text" id="filter-logs-input" placeholder="Search flagged domains, brands or URLs..." class="table-search">
+            <div class="filter-pills">
+              <button class="filter-pill active" data-filter="all">All</button>
+              <button class="filter-pill" data-filter="DANGER">Danger Only</button>
+              <button class="filter-pill" data-filter="SUSPICIOUS">Caution Only</button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="logs-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Domain / URL</th>
+                  <th>Verdict</th>
+                  <th>Threat Score</th>
+                  <th>Target Brand</th>
+                  <th>Identified Summary</th>
+                </tr>
+              </thead>
+              <tbody id="logs-tbody">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
+          </div>
+          <div id="logs-empty-state" class="empty-state hidden">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <p>No threat incidents recorded yet. Clean browsing history!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: Whitelist & Blacklist -->
+      <section id="tab-rules" class="content-panel">
+        <header class="panel-header">
+          <div>
+            <h1 class="panel-title">Whitelist & Blacklist Rules</h1>
+            <p class="panel-subtitle">Manage custom trusted origins and explicit domain blocklists.</p>
+          </div>
+        </header>
+
+        <div class="rules-grid">
+          <!-- Whitelist Box -->
+          <div class="rule-box">
+            <h2 class="rule-box-title">
+              <span class="dot dot-green"></span>
+              Custom Trusted Whitelist
+            </h2>
+            <p class="rule-box-desc">Domains added here will bypass heuristic risk calculations.</p>
+            <div class="add-rule-row">
+              <input type="text" id="input-whitelist-domain" placeholder="e.g. internal.company.com">
+              <button id="btn-add-whitelist" class="btn btn-primary">Add Domain</button>
+            </div>
+            <ul id="list-whitelist" class="rules-tag-list"></ul>
+          </div>
+
+          <!-- Blacklist Box -->
+          <div class="rule-box">
+            <h2 class="rule-box-title">
+              <span class="dot dot-red"></span>
+              Custom Threat Blacklist
+            </h2>
+            <p class="rule-box-desc">Domains added here will immediately be assigned 100% Danger risk score.</p>
+            <div class="add-rule-row">
+              <input type="text" id="input-blacklist-domain" placeholder="e.g. known-scammer.com">
+              <button id="btn-add-blacklist" class="btn btn-danger">Block Domain</button>
+            </div>
+            <ul id="list-blacklist" class="rules-tag-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Custom Brands Monitor -->
+      <section id="tab-brands" class="content-panel">
+        <header class="panel-header">
+          <div>
+            <h1 class="panel-title">Custom Brand Protection</h1>
+            <p class="panel-subtitle">Add your organization's domains to detect typosquatting and impersonation attacks targeting your brand.</p>
+          </div>
+        </header>
+
+        <div class="settings-card">
+          <div class="add-brand-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Brand Name</label>
+                <input type="text" id="input-brand-name" placeholder="e.g. Acme Corp">
+              </div>
+              <div class="form-field">
+                <label>Official Domains (Comma Separated)</label>
+                <input type="text" id="input-brand-domains" placeholder="acme.com, acmecorp.io">
+              </div>
+              <div class="form-field">
+                <label>Monitored Keywords</label>
+                <input type="text" id="input-brand-keywords" placeholder="acme, acme-portal, acmecorp">
+              </div>
+            </div>
+            <button id="btn-add-custom-brand" class="btn btn-primary" style="margin-top: 10px;">+ Add Brand Monitor</button>
+          </div>
+
+          <div class="brand-list-wrapper">
+            <h3 class="sub-heading">Active Custom Brand Monitors</h3>
+            <div id="custom-brands-list" class="custom-brands-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: Engine Configuration -->
+      <section id="tab-settings" class="content-panel">
+        <header class="panel-header">
+          <div>
+            <h1 class="panel-title">Engine Configuration</h1>
+            <p class="panel-subtitle">Fine-tune detection thresholds and heuristic strictness.</p>
+          </div>
+          <button id="btn-save-settings" class="btn btn-accent">Save Changes</button>
+        </header>
+
+        <div class="settings-card">
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Detection Sensitivity</div>
+              <div class="setting-desc">Adjust threshold strictness for suspicious TLDs and typosquatting distances.</div>
+            </div>
+            <select id="select-sensitivity" class="setting-select">
+              <option value="permissive">Permissive (Lower False Positives)</option>
+              <option value="standard" selected>Standard (Balanced Protection)</option>
+              <option value="aggressive">Aggressive (High-Paranoia Mode)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">In-Page Interstitial Warning Shield</div>
+              <div class="setting-desc">Display full-screen blocking overlay when a high-confidence phishing scam is intercepted.</div>
+            </div>
+            <input type="checkbox" id="check-interstitial" checked class="setting-toggle">
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Punycode & IDN Strict Warning</div>
+              <div class="setting-desc">Flag any domain utilizing internationalized domain name Punycode encoding (xn--).</div>
+            </div>
+            <input type="checkbox" id="check-punycode-strict" checked class="setting-toggle">
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <div class="setting-name">Cross-Origin DOM Credential Protection</div>
+              <div class="setting-desc">Inspect HTML forms for password fields posting across origins.</div>
+            </div>
+            <input type="checkbox" id="check-dom-protection" checked class="setting-toggle">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

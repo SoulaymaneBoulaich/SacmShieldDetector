@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield Pro</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="shield-container">
+    <!-- Header -->
+    <header class="shield-header">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#38bdf8"/>
+            <circle cx="12" cy="11" r="3" fill="#38bdf8"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <span class="title-main">ScamShield<span class="pro-tag">PRO</span></span>
+          <span class="title-sub"><span class="pulse-dot"></span> Real-Time Guard</span>
+        </div>
+      </div>
+      <button id="btn-open-options" class="icon-btn" title="Open Settings & Logs" aria-label="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="view-tabs">
+      <button id="tab-active-site" class="tab-btn active">Active Tab Radar</button>
+      <button id="tab-url-inspector" class="tab-btn">Link Inspector</button>
+    </nav>
+
+    <!-- VIEW 1: Active Tab Radar -->
+    <section id="view-active-radar" class="tab-view active">
+      <!-- Radar Status Gauge -->
+      <div class="radar-card">
+        <div class="gauge-wrapper">
+          <svg class="gauge-svg" width="130" height="130" viewBox="0 0 100 100">
+            <circle class="gauge-bg" cx="50" cy="50" r="42" />
+            <circle id="gauge-meter" class="gauge-meter" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264" />
+          </svg>
+          <div class="gauge-center">
+            <div id="gauge-score" class="score-num">--</div>
+            <div id="gauge-verdict" class="score-verdict">SCANNING</div>
+          </div>
+        </div>
+
+        <div class="site-identity">
+          <div id="site-url-badge" class="url-chip" title="Current Site">
+            <span id="site-protocol" class="proto-tag">HTTPS</span>
+            <span id="site-hostname" class="host-text">Detecting site...</span>
+          </div>
+          <div id="site-brand-target" class="brand-alert-tag hidden">
+            <span>Mimics: <strong id="brand-target-name">--</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Threat Summary & Diagnostics -->
+      <div class="diagnostics-card">
+        <div class="card-header">
+          <span class="card-title">Threat Intelligence Report</span>
+          <span id="threat-indicator-pill" class="pill pill-safe">Secure</span>
+        </div>
+        <p id="threat-summary-text" class="summary-desc">Analyzing domain structure, unicode lookalikes, and form security...</p>
+
+        <!-- Heuristic Metrics 4-Grid -->
+        <div class="heuristics-grid">
+          <div class="heuristic-cell">
+            <div class="cell-label">Typosquat</div>
+            <div id="metric-typo" class="cell-val val-green">0%</div>
+          </div>
+          <div class="heuristic-cell">
+            <div class="cell-label">Homoglyph</div>
+            <div id="metric-homo" class="cell-val val-green">0%</div>
+          </div>
+          <div class="heuristic-cell">
+            <div class="cell-label">Domain Risk</div>
+            <div id="metric-domain" class="cell-val val-green">0%</div>
+          </div>
+          <div class="heuristic-cell">
+            <div class="cell-label">DOM Signals</div>
+            <div id="metric-dom" class="cell-val val-green">0%</div>
+          </div>
+        </div>
+
+        <!-- Evidence Flags Accordion -->
+        <div id="flags-container" class="flags-box hidden">
+          <div class="flags-title">Security Flags Identified (<span id="flags-count">0</span>)</div>
+          <div id="flags-list" class="flags-scroll"></div>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="action-footer">
+        <button id="btn-rescan" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6M1 20v-6h6"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+          Re-Scan
+        </button>
+        <button id="btn-whitelist-current" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          Trust Domain
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 2: Instant Link & URL Inspector -->
+    <section id="view-url-inspector" class="tab-view">
+      <div class="inspector-card">
+        <label for="input-custom-url" class="input-label">Audit Suspicious Link / Text / Domain</label>
+        <p class="input-sub">Paste an email link, SMS URL, or domain to evaluate safety before clicking.</p>
+        <div class="input-group">
+          <input type="text" id="input-custom-url" placeholder="e.g. https://paypal-security.support-auth.xyz" spellcheck="false" autocomplete="off">
+          <button id="btn-run-inspect" class="btn btn-accent">Audit</button>
+        </div>
+      </div>
+
+      <!-- Inspector Results Container -->
+      <div id="inspector-results" class="inspector-results hidden">
+        <div class="inspect-result-header">
+          <div class="inspect-score-badge" id="inspect-score-badge">0 / 100</div>
+          <div class="inspect-verdict" id="inspect-verdict">SAFE</div>
+        </div>
+        <p id="inspect-summary" class="inspect-summary"></p>
+        <div id="inspect-flags" class="flags-scroll"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

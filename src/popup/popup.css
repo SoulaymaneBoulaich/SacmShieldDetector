@@ -1,0 +1,544 @@
+/* ScamShield Pro - Popup Cyber Defense Theme */
+
+:root {
+  --bg-main: #070b13;
+  --bg-card: #0f172a;
+  --bg-card-hover: #1e293b;
+  --border-subtle: #1e293b;
+  --border-active: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --cyber-safe: #10b981;
+  --cyber-safe-glow: rgba(16, 185, 129, 0.25);
+  --cyber-warn: #f59e0b;
+  --cyber-warn-glow: rgba(245, 158, 11, 0.25);
+  --cyber-danger: #ef4444;
+  --cyber-danger-glow: rgba(239, 68, 68, 0.3);
+  --cyber-cyan: #06b6d4;
+  --cyber-blue: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 380px;
+  min-height: 520px;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  user-select: none;
+  overflow-x: hidden;
+}
+
+.shield-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.shield-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-main {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pro-tag {
+  font-size: 10px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #030712;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.title-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyber-safe);
+  box-shadow: 0 0 8px var(--cyber-safe);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-active);
+}
+
+/* Tabs */
+.view-tabs {
+  display: flex;
+  background: #0b1120;
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 7px 10px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: #1e293b;
+  color: #38bdf8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.tab-view {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tab-view.active {
+  display: flex;
+}
+
+/* Radar Status Card */
+.radar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gauge-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  transform: rotate(-90deg);
+}
+
+.gauge-bg {
+  fill: none;
+  stroke: #1e293b;
+  stroke-width: 8;
+}
+
+.gauge-meter {
+  fill: none;
+  stroke: var(--cyber-safe);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;
+}
+
+.gauge-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.score-verdict {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cyber-safe);
+  margin-top: 4px;
+}
+
+.site-identity {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.url-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #090d16;
+  border: 1px solid var(--border-subtle);
+  padding: 4px 10px;
+  border-radius: 20px;
+  max-width: 100%;
+}
+
+.proto-tag {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--cyber-cyan);
+  background: rgba(6, 182, 212, 0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.host-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.brand-alert-tag {
+  font-size: 11px;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+/* Diagnostics Card */
+.diagnostics-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.pill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.pill-safe { background: rgba(16, 185, 129, 0.15); color: var(--cyber-safe); border: 1px solid rgba(16, 185, 129, 0.3); }
+.pill-warn { background: rgba(245, 158, 11, 0.15); color: var(--cyber-warn); border: 1px solid rgba(245, 158, 11, 0.3); }
+.pill-danger { background: rgba(239, 68, 68, 0.15); color: var(--cyber-danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.summary-desc {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+/* 4-Grid Metrics */
+.heuristics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.heuristic-cell {
+  background: #090d16;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 6px 4px;
+  text-align: center;
+}
+
+.cell-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.cell-val {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.val-green { color: var(--cyber-safe); }
+.val-amber { color: var(--cyber-warn); }
+.val-red { color: var(--cyber-danger); }
+
+/* Flags List */
+.flags-box {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+.flags-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.flags-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.flag-badge-row {
+  background: #090d16;
+  border-left: 3px solid #3b82f6;
+  padding: 6px 8px;
+  border-radius: 0 6px 6px 0;
+  font-size: 11px;
+}
+
+.flag-badge-row.sev-critical { border-color: var(--cyber-danger); }
+.flag-badge-row.sev-high { border-color: #f97316; }
+.flag-badge-row.sev-medium { border-color: var(--cyber-warn); }
+
+.flag-row-title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.flag-row-desc {
+  color: #e2e8f0;
+  line-height: 1.35;
+}
+
+/* Action Footer */
+.action-footer {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #f8fafc;
+}
+
+.btn-primary:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.btn-accent {
+  background: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+}
+
+.btn-accent:hover {
+  background: #0369a1;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Inspector View */
+.inspector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.input-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.input-group {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.input-group input {
+  flex: 1;
+  background: #090d16;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #f8fafc;
+  font-size: 12px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.inspector-results {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: scamshield-fade-in 0.2s ease-out;
+}
+
+.inspect-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inspect-score-badge {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.inspect-verdict {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.inspect-summary {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.hidden {
+  display: none !important;
+}

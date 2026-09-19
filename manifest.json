@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ScamShield Pro — Phishing & Scam Detector",
+  "version": "1.0.0",
+  "description": "Real-time heuristic cyber shield detecting phishing sites, brand spoofing, typosquatting, homoglyphs, and deceptive links.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/dom-scanner.js"],
+      "css": ["src/content/shield-overlay.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "ScamShield Pro - Security Status",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

