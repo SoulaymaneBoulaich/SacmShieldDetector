@@ -1,11 +1,19 @@
-# 🛡️ ScamShield Pro — AI & Real-Time Phishing/Scam Detector
+<p align="center">
+  <img src="assets/logo.jpg" alt="ScamShield Pro Logo" width="180" style="border-radius: 20px; box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);" />
+</p>
 
-[![Manifest V3](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
-[![Privacy First](https://img.shields.io/badge/Privacy-100%25%20Zero%20Telemetry-emerald.svg)](#-privacy-guarantee)
-[![Tests Passing](https://img.shields.io/badge/Tests-29%2F29%20Passing-brightgreen.svg)](#-automated-tests)
-[![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
+<h1 align="center">🛡️ ScamShield Pro — Real-Time Phishing & Scam Detector</h1>
 
-**ScamShield Pro** is an enterprise-grade, privacy-first Manifest V3 browser extension for Google Chrome, Microsoft Edge, and Chromium browsers. It delivers real-time protection against online scams, phishing campaigns, Cyrillic/Greek homoglyph spoofing, brand typosquatting, high-risk disposable TLDs, and credential-harvesting DOM forms.
+<p align="center">
+  <a href="https://developer.chrome.com/docs/extensions/mv3/intro/"><img src="https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-blue.svg" alt="Manifest V3" /></a>
+  <a href="#-privacy-guarantee"><img src="https://img.shields.io/badge/Privacy-100%25%20Zero%20Telemetry-emerald.svg" alt="Privacy First" /></a>
+  <a href="#-testing-scamshield-pro"><img src="https://img.shields.io/badge/Tests-29%2F29%20Passing-brightgreen.svg" alt="Tests Passing" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple.svg" alt="License" /></a>
+</p>
+
+<p align="center">
+  <strong>An enterprise-grade, privacy-first Manifest V3 browser extension delivering real-time protection against online scams, phishing campaigns, Cyrillic/Greek homoglyphs, brand typosquatting, high-risk TLDs, and credential-harvesting forms.</strong>
+</p>
 
 ---
 
